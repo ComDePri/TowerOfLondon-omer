@@ -3,19 +3,31 @@
 /* ************************************ */
 const BUCKET_NAME = "tower-of-london-experiment-2024"
 
-function getUrlDetails(){
+function getProlificId(){
   const urlParams = new URL(location.href).searchParams;
 
 // Get parameters by name
   return urlParams.get('PROLIFIC_PID')
 }
 
+function getExpURL(){
+  const urlParams = new URL(location.href).searchParams;
+
+// Get parameters by name
+  //console.log("getting expUrl")
+  let expurl =  urlParams.get('expUrl');
+  let pid = urlParams.get('PROLIFIC_PID');
+  let stud = urlParams.get('studID');
+  let sess = urlParams.get('sessID');
+  return expurl +"/?PROLIFIC_PID="+ pid + "&studID=" + stud + "&sessID=" + sess;
+}
+
 function saveData() {
   // Retrieve data from jsPsych
 
   //let subject = getUrlDetails()
-  let subject = 1
-  var data = jsPsych.data.dataAsJSON()// Get data as JSON string
+  let subject = getProlificId();
+  var data = jsPsych.data.dataAsJSON();// Get data as JSON string
 
   // Make a POST request to the Lambda function or API Gateway endpoint
   $.ajax({
@@ -355,6 +367,8 @@ var end_block = {
   on_finish: function() {
   assessPerformance();
   saveData();
+    window.location.href = getExpURL();
+    history.pushState(null, '', window.location.href);
 }
 };
 
