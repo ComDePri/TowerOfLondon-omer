@@ -818,7 +818,12 @@ var problem_node = {
   timing_post_trial: 1000
 }
 
-let stages = [4,5,6]
+if(getProlificId() === 'test'){
+  num_problems = 1
+} else {
+  num_problems = 8
+}
+
 /* create experiment definition array */
 var tower_of_london_experiment = [];
 tower_of_london_experiment.push(instruction_node);
@@ -827,7 +832,7 @@ tower_of_london_experiment.push(feedback_block)
 tower_of_london_experiment.push(start_test_block);
 
 for (var j = 0; j < 3 ; j++) {
-  for (var i = 0; i < 8 ; i++) {
+  for (var i = 0; i < num_problems ; i++) {
     tower_of_london_experiment.push(problem_node);
     tower_of_london_experiment.push(feedback_block)
     if (i !== 7) {
