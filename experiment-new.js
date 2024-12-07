@@ -1,216 +1,11 @@
 /* ************************************ */
-/* Define new helper functions for ComDepRi */
+/* Define helper functions */
 /* ************************************ */
-
-var problemsJSON = {
-  "11": [
-    [2, 1, 3],
-    [0, 0],
-    [0]
-  ],
-  "12": [
-    [2, 1, 0],
-    [0, 0],
-    [3]
-  ],
-  "13": [
-    [2, 1, 0],
-    [3, 0],
-    [0]
-  ],
-  "14": [
-    [2, 0, 0],
-    [3, 1],
-    [0]
-  ],
-  "15": [
-    [2, 0, 0],
-    [3, 0],
-    [1]
-  ],
-  "16": [
-    [0, 0, 0],
-    [3, 2],
-    [1]
-  ],
-  "21": [
-    [2, 3, 1],
-    [0, 0],
-    [0]
-  ],
-  "22": [
-    [2, 3, 0],
-    [0, 0],
-    [1]
-  ],
-  "23": [
-    [2, 3, 0],
-    [1, 0],
-    [0]
-  ],
-  "24": [
-    [2, 0, 0],
-    [1, 3],
-    [0]
-  ],
-  "25": [
-    [2, 0, 0],
-    [1, 0],
-    [3]
-  ],
-  "26": [
-    [0, 0, 0],
-    [1, 2],
-    [3]
-  ],
-  "31": [
-    [3, 2, 1],
-    [0, 0],
-    [0]
-  ],
-  "32": [
-    [3, 2, 0],
-    [0, 0],
-    [1]
-  ],
-  "33": [
-    [3, 2, 0],
-    [1, 0],
-    [0]
-  ],
-  "34": [
-    [3, 0, 0],
-    [1, 2],
-    [0]
-  ],
-  "35": [
-    [3, 0, 0],
-    [1, 0],
-    [2]
-  ],
-  "36": [
-    [0, 0, 0],
-    [1, 3],
-    [2]
-  ],
-  "41": [
-    [3, 1, 2],
-    [0, 0],
-    [0]
-  ],
-  "42": [
-    [3, 1, 0],
-    [0, 0],
-    [2]
-  ],
-  "43": [
-    [3, 1, 0],
-    [2, 0],
-    [0]
-  ],
-  "44": [
-    [3, 0, 0],
-    [2, 1],
-    [0]
-  ],
-  "45": [
-    [3, 0, 0],
-    [2, 0],
-    [1]
-  ],
-  "46": [
-    [0, 0, 0],
-    [2, 3],
-    [1]
-  ],
-
-  "51": [
-    [1, 3, 2],
-    [0, 0],
-    [0]
-  ],
-  "52": [
-    [1, 3, 0],
-    [0, 0],
-    [2]
-  ],
-  "53": [
-    [2, 3, 0],
-    [1, 0],
-    [0]
-  ],
-  "54": [
-    [1, 0, 0],
-    [2, 3],
-    [0]
-  ],
-  "55": [
-    [1, 0, 0],
-    [2, 0],
-    [3]
-  ],
-  "56": [
-    [0, 0, 0],
-    [2, 1],
-    [3]
-  ],
-
-  "61": [
-    [1, 2, 3],
-    [0, 0],
-    [0]
-  ],
-  "62": [
-    [1, 2, 0],
-    [0, 0],
-    [3]
-  ],
-  "63": [
-    [2, 1, 0],
-    [3, 0],
-    [0]
-  ],
-  "64": [
-    [1, 0, 0],
-    [3, 2],
-    [0]
-  ],
-  "65": [
-    [1, 0, 0],
-    [3, 0],
-    [2]
-  ],
-  "66": [
-    [0, 0, 0],
-    [3, 1],
-    [2]
-  ]
-}
-
 const BUCKET_NAME = "tower-of-london-experiment-2024"
-// Define starting and ending positions
-function getStartingPos(group, numMovements, pos) {
-  var startPos = {
-    4: { "A": ["14", "45", "23", "14", "16", "22", "46", "42"], "B": ["34", "65", "53", "34", "26", "52", "36", "62"] },
-    5: { "A": ["23", "52", "34", "43", "54", "63", "15", "45"], "B": ["33", "52", "54", "33", "34", "53", "35", "55"] },
-    6: { "A": ["12", "53", "56", "42", "53", "24", "42", "16"], "B": ["32", "53", "46", "32", "33", "54", "42", "56"] },
-  };
-  console.log("start: " + startPos[numMovements][group][pos]);
-  return problemsJSON[startPos[numMovements][group][pos]];
-}
-
-function getEndingPos(group, numMovements, pos) {
-  var endPos = {
-    4: { "A": ["51", "51", "64", "53", "24", "63", "65", "55"], "B": ["11", "11", "14", "13", "14", "13", "15", "15"] },
-    5: { "A": ["41", "11", "54", "63", "34", "43", "55", "25"], "B": ["11", "11", "14", "13", "14", "13", "15", "15"] },
-    6: { "A": ["51", "11", "24", "63", "34", "63", "15", "35"], "B": ["11", "11", "14", "13", "14", "13", "15", "15"] },
-  };
-  console.log("end: " + endPos[numMovements][group][pos]);
-  return problemsJSON[endPos[numMovements][group][pos]]
-}
 
 function getProlificId(){
   const urlParams = new URL(location.href).searchParams;
+
 // Get parameters by name
   return urlParams.get('PROLIFIC_PID')
 }
@@ -253,10 +48,6 @@ function saveData() {
   });
 }
 
-/* ************************************ */
-/* Define helper functions */
-/* ************************************ */
-
 function assessPerformance() {
   /* Function to calculate the "credit_var", which is a boolean used to
   credit individual experiments in expfactory.
@@ -288,10 +79,9 @@ function assessPerformance() {
 }
 
 var getStim = function() {
-  var moveCountElement = '<div id="move-count">Moves: ' + num_moves + '/'+ max_moves+ ' </div>';
-  var ref_board = makeBoard('your_board', curr_placement, 'ref');
-  var target_board = makeBoard('peg_board', my_problem);
-  var canvas = '<div class = tol_canvas><div class="tol_vertical_line"></div></div>';
+  var ref_board = makeBoard('your_board', curr_placement, 'ref')
+  var target_board = makeBoard('peg_board', problems[problem_i])
+  var canvas = '<div class = tol_canvas><div class="tol_vertical_line"></div></div>'
   var hold_box;
   if (held_ball !== 0) {
     ball = colors[held_ball - 1]
@@ -302,7 +92,7 @@ var getStim = function() {
     hold_box =
       '<div class = tol_hand_box></div><div class = tol_hand_label><strong>Ball in Hand</strong></div>'
   }
-  return moveCountElement + canvas + ref_board + target_board + hold_box;
+  return canvas + ref_board + target_board + hold_box
 }
 
 var getPractice = function() {
@@ -355,22 +145,12 @@ var getTime = function() {
   } else {
     return 1
   }
-
-}
-
-var getStartText = function() {
-  return '<div class = centerbox><p class = block-text>We will now start Section 1. There will be 8 problems to complete,' +
-  'with a limit of 4 moves each one. </br> Press <strong>enter</strong> to begin.</p></div>'
-}
-
-var getStageText = function() {
-  return '<div class = centerbox><p class = block-text>We will now start an new section. The problems will have now a limit of ' + (max_moves + 1) +
-      ' moves per problem. Press <strong>enter</strong> to begin.</p></div>'
+  
 }
 
 var getText = function() {
-  return '<div class = centerbox><p class = block-text>About to start problem ' + (problem_i + 2) +
-    '. Remember: You have ' + (max_moves) +' moves to solve it - Plan well. Press <strong>enter</strong> to begin.</p></div>'
+  return '<div class = centerbox><p class = center-block-text>About to start problem ' + (problem_i + 2) +
+    '. Press <strong>enter</strong> to begin.</p></div>'
 }
 
 var pegClick = function(peg_id) {
@@ -383,7 +163,6 @@ var pegClick = function(peg_id) {
         held_ball = peg[i]
         peg[i] = 0
         num_moves += 1
-        jsPsych.setElementContent('move-count', 'Moves: ' + num_moves);
         break;
       }
     }
@@ -395,8 +174,6 @@ var pegClick = function(peg_id) {
     }
   }
 }
-
-
 
 var makeBoard = function(container, ball_placement, board_type) {
   var board = '<div class = tol_' + container + '><div class = tol_base></div>'
@@ -461,8 +238,7 @@ var correct = false
 var exp_stage = 'practice'
 var colors = ['Green', 'Red', 'Blue']
 var problem_i = 0
-var max_moves = 4
-var time_per_trial = 60000 //time per trial in seconds
+var time_per_trial = 20000 //time per trial in seconds
 var time_elapsed = 0 //tracks time for a problem
 var num_moves = 0 //tracks number of moves for a problem
   /*keeps track of peg board (where balls are). Lowest ball is the first value for each peg.
@@ -490,7 +266,73 @@ var example_problem3 = [
   [0]
 ]
 var ref_board = makeBoard('your_board', curr_placement)
-var my_problem = [[1,2,3],[0,0],[0]]
+//var problems = [[
+  //[0, 0, 0],
+  //[3, 1],
+  //[2]
+  //]]
+var problems = [
+  [
+    [0, 0, 0],
+    [3, 1],
+    [2]
+  ],
+  [
+    [1, 0, 0],
+    [2, 0],
+    [3]
+  ],
+  [
+    [1, 3, 0],
+    [2, 0],
+    [0]
+  ],
+  [
+    [1, 0, 0],
+    [2, 3],
+    [0]
+  ],
+  [
+    [2, 1, 0],
+    [3, 0],
+    [0]
+  ],
+  [
+    [3, 0, 0],
+    [2, 1],
+    [0]
+  ],
+  [
+    [2, 3, 0],
+    [0, 0],
+    [1]
+  ],
+  [
+    [0, 0, 0],
+    [2, 3],
+    [1]
+  ],
+  [
+    [2, 1, 3],
+    [0, 0],
+    [0]
+  ],
+  [
+    [2, 3, 1],
+    [0, 0],
+    [0]
+  ],
+  [
+    [3, 1, 0],
+    [2, 0],
+    [0]
+  ],
+  [
+    [3, 0, 0],
+    [2, 0],
+    [1]
+  ]
+]
 
 //var answers = [2]
 var answers = [2, 2, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5]
@@ -531,7 +373,7 @@ var end_block = {
 };
 
 var feedback_instruct_text =
-  'Welcome to the experiment. This experiment will take about 20 minutes. Press <strong>enter</strong> to begin.'
+  'Welcome to the experiment. This experiment will take about 5 minutes. Press <strong>enter</strong> to begin.'
 var feedback_instruct_block = {
   type: 'poldrack-text',
   data: {
@@ -593,7 +435,8 @@ var start_test_block = {
     trial_id: "instruction"
   },
   timing_response: 180000,
-  text: getStartText(),
+  text: '<div class = centerbox><p class = block-text>We will now start Problem 1. There will be ' +
+    problems.length + ' problems to complete. Press <strong>enter</strong> to begin.</p></div>',
   cont_key: [13],
   timing_post_trial: 1000,
   on_finish: function() {
@@ -601,31 +444,13 @@ var start_test_block = {
     held_ball = 0
     time_elapsed = 0
     num_moves = 0;
-    curr_placement = getStartingPos("A",max_moves,problem_i)
-    my_problem = getEndingPos("A",max_moves,problem_i)
+    curr_placement = [
+      [1, 2, 0],
+      [3, 0],
+      [0]
+    ]
   }
 };
-
-var advance_stage_block = {
-  type: 'poldrack-text',
-  data: {
-    trial_id: "advance",
-    exp_stage: 'test'
-  },
-  timing_response: 180000,
-  text: getStageText,
-  cont_key: [13],
-  on_finish: function() {
-    held_ball = 0
-    time_elapsed = 0
-    problem_i = 0;
-    num_moves = 0;
-    max_moves++
-    curr_placement = getStartingPos("A",max_moves,problem_i)
-    my_problem = getEndingPos("A",max_moves,problem_i)
-
-  }
-}
 
 var advance_problem_block = {
   type: 'poldrack-text',
@@ -641,8 +466,11 @@ var advance_problem_block = {
     time_elapsed = 0
     problem_i += 1;
     num_moves = 0;
-    curr_placement = getStartingPos("A",max_moves, problem_i)
-    my_problem = getEndingPos("A",max_moves,problem_i)
+    curr_placement = [
+      [1, 2, 0],
+      [3, 0],
+      [0]
+    ]
   }
 }
 
@@ -723,7 +551,7 @@ var test_tohand = {
     jsPsych.data.addDataToLastTrial({
       'current_position': jQuery.extend(true, [], curr_placement),
       'num_moves_made': num_moves,
-      'target': my_problem,
+      'target': problems[problem_i],
       'min_moves': answers[problem_i],
       'problem_id': problem_i
     })
@@ -751,7 +579,7 @@ var test_toboard = {
     jsPsych.data.addDataToLastTrial({
       'current_position': jQuery.extend(true, [], curr_placement),
       'num_moves_made': num_moves,
-      'target': my_problem,
+      'target': problems[problem_i],
       'min_moves': answers[problem_i],
       'problem_id': problem_i
     })
@@ -801,7 +629,7 @@ var practice_node = {
 var problem_node = {
   timeline: [test_tohand, test_toboard],
   loop_function: function(data) {
-    if (time_elapsed >= time_per_trial || num_moves === max_moves) {
+    if (time_elapsed >= time_per_trial) {
       return false
     }
     data = data[1]
@@ -818,24 +646,17 @@ var problem_node = {
   timing_post_trial: 1000
 }
 
-let stages = [4,5,6]
 /* create experiment definition array */
 var tower_of_london_experiment = [];
 tower_of_london_experiment.push(instruction_node);
 tower_of_london_experiment.push(practice_node);
 tower_of_london_experiment.push(feedback_block)
 tower_of_london_experiment.push(start_test_block);
-
-for (const j in stages) {
-  for (var i = 0; i < 8 ; i++) {
-    tower_of_london_experiment.push(problem_node);
-    tower_of_london_experiment.push(feedback_block)
-    if (i !== 7) {
-      tower_of_london_experiment.push(advance_problem_block)
-    }
-  }
-  if(j!==6) {
-    tower_of_london_experiment.push(advance_stage_block)
+for (var i = 0; i < problems.length; i++) {
+  tower_of_london_experiment.push(problem_node);
+  tower_of_london_experiment.push(feedback_block)
+  if (i != problems.length-1) {
+    tower_of_london_experiment.push(advance_problem_block)
   }
 }
 tower_of_london_experiment.push(post_task_block)

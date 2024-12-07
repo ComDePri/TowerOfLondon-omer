@@ -47,7 +47,7 @@
   top: 102.5%;
   left: 50%;
   transform: translate(-50%,0%);
-  font-size: 30px;
+  font-size: 26px;
   color: white;
   text-align:center;  
 }
@@ -212,4 +212,9 @@
   margin-top: 0px;
   position: relative;
   z-index: 1;
+}
+
+#move-count {
+  font-size: 20px;
+  font-weight: bold;
 }
