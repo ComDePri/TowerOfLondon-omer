@@ -381,7 +381,6 @@ var pegClick = function(peg_id) {
         held_ball = peg[i]
         peg[i] = 0
         num_moves += 1
-        jsPsych.setElementContent('move-count', 'Moves: ' + num_moves);
         break;
       }
     }
