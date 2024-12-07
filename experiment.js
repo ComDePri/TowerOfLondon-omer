@@ -826,7 +826,7 @@ tower_of_london_experiment.push(practice_node);
 tower_of_london_experiment.push(feedback_block)
 tower_of_london_experiment.push(start_test_block);
 
-for (const j in stages) {
+for (var j = 0; j < 3 ; j++) {
   for (var i = 0; i < 8 ; i++) {
     tower_of_london_experiment.push(problem_node);
     tower_of_london_experiment.push(feedback_block)
@@ -834,7 +834,8 @@ for (const j in stages) {
       tower_of_london_experiment.push(advance_problem_block)
     }
   }
-  if(j!==6) {
+  console.log("j is: " + j)
+  if(j!==3) {
     tower_of_london_experiment.push(advance_stage_block)
   }
 }
