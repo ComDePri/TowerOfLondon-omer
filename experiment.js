@@ -234,7 +234,7 @@ function saveData() {
 
   // Make a POST request to the Lambda function or API Gateway endpoint
   $.ajax({
-    url: 'https://hss74dd1ed.execute-api.us-east-1.amazonaws.com/dev/', // Replace with your API Gateway/Lambda endpoint
+    url: 'https://hss74dd1ed.execute-api.us-east-1.amazonaws.com/dev/',
     type: 'POST',
     contentType: 'application/json',
     data: JSON.stringify({
@@ -522,8 +522,9 @@ var end_block = {
   on_finish: function() {
   assessPerformance();
   saveData();
-    window.location.href = getExpURL();
-    history.pushState(null, '', window.location.href);
+  console.log("data_saved")
+  window.location.href = getExpURL();
+  history.pushState(null, '', window.location.href);
 }
 };
 
