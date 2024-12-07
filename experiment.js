@@ -195,7 +195,6 @@ function getStartingPos(group, numMovements, pos) {
     5: { "A": ["23", "52", "34", "43", "54", "63", "15", "45"], "B": ["33", "52", "54", "33", "34", "53", "35", "55"] },
     6: { "A": ["12", "53", "56", "42", "53", "24", "42", "16"], "B": ["32", "53", "46", "32", "33", "54", "42", "56"] },
   };
-  console.log("start: " + startPos[numMovements][group][pos]);
   return problemsJSON[startPos[numMovements][group][pos]];
 }
 
@@ -205,7 +204,6 @@ function getEndingPos(group, numMovements, pos) {
     5: { "A": ["41", "11", "54", "63", "34", "43", "55", "25"], "B": ["11", "11", "14", "13", "14", "13", "15", "15"] },
     6: { "A": ["51", "11", "24", "63", "34", "63", "15", "35"], "B": ["11", "11", "14", "13", "14", "13", "15", "15"] },
   };
-  console.log("end: " + endPos[numMovements][group][pos]);
   return problemsJSON[endPos[numMovements][group][pos]]
 }
 
@@ -840,7 +838,7 @@ for (var j = 0; j < 3 ; j++) {
     }
   }
   console.log("j is: " + j)
-  if(j!==3) {
+  if(j!==2) {
     tower_of_london_experiment.push(advance_stage_block)
   }
 }
