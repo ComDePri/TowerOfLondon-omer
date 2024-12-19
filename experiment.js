@@ -135,8 +135,8 @@ var problemsJSON = {
     [2]
   ],
   "53": [
-    [2, 3, 0],
-    [1, 0],
+    [1, 3, 0],
+    [2, 0],
     [0]
   ],
   "54": [
@@ -166,7 +166,7 @@ var problemsJSON = {
     [3]
   ],
   "63": [
-    [2, 1, 0],
+    [1, 3, 0],
     [3, 0],
     [0]
   ],
@@ -195,6 +195,7 @@ function getStartingPos(group, numMovements, pos) {
     5: { "A": ["23", "52", "34", "43", "54", "63", "15", "45"], "B": ["33", "52", "54", "33", "34", "53", "35", "55"] },
     6: { "A": ["12", "53", "56", "42", "53", "24", "42", "16"], "B": ["32", "53", "46", "32", "33", "54", "42", "56"] },
   };
+
   return problemsJSON[startPos[numMovements][group][pos]];
 }
 
@@ -204,6 +205,7 @@ function getEndingPos(group, numMovements, pos) {
     5: { "A": ["41", "11", "54", "63", "34", "43", "55", "25"], "B": ["11", "11", "14", "13", "14", "13", "15", "15"] },
     6: { "A": ["51", "11", "24", "63", "34", "63", "15", "35"], "B": ["11", "11", "14", "13", "14", "13", "15", "15"] },
   };
+
   return problemsJSON[endPos[numMovements][group][pos]]
 }
 
@@ -358,7 +360,7 @@ var getTime = function() {
 
 var getStartText = function() {
   return '<div class = centerbox><p class = block-text>We will now start Section 1. There will be 8 problems to complete,' +
-  'with a limit of 4 moves each one. </br> Press <strong>enter</strong> to begin.</p></div>'
+  ' with a limit of 4 moves each one. </br> Press <strong>enter</strong> to begin.</p></div>'
 }
 
 var getStageText = function() {
@@ -396,6 +398,14 @@ var pegClick = function(peg_id) {
 
 
 var makeBoard = function(container, ball_placement, board_type) {
+
+  let my_label
+  if(board_type == 'ref'){
+    my_label = 'tol_ball_label>'
+  } else {
+    my_label = 'tol_static_ball_label>'
+  }
+
   var board = '<div class = tol_' + container + '><div class = tol_base></div>'
   if (container == 'your_board') {
     board += '<div class = tol_board_label><strong>Your Board</strong></div>'
@@ -420,7 +430,7 @@ var makeBoard = function(container, ball_placement, board_type) {
     for (var b = 0; b < peg.length; b++) {
       if (peg[b] !== 0) {
         ball = colors[peg[b] - 1]
-        board += '<div class = "tol_ball tol_' + ball + '"><div class = tol_ball_label>' + ball[0] +
+        board += '<div class = "tol_ball tol_' + ball + '"><div class = ' + my_label + ball[0] +
           '</div></div>'
       }
     }
@@ -462,6 +472,8 @@ var max_moves = 4
 var time_per_trial = 60000 //time per trial in seconds
 var time_elapsed = 0 //tracks time for a problem
 var num_moves = 0 //tracks number of moves for a problem
+var zero_moves = 0
+var MAX_NO_MOVES = 2
   /*keeps track of peg board (where balls are). Lowest ball is the first value for each peg.
   So the initial_placement has the 1st ball and 2nd ball on the first peg and the third ball on the 2nd peg.
   */
@@ -509,6 +521,26 @@ var post_task_block = {
 };
 
 /* define static blocks */
+
+// Error block definition
+var error_block = {
+  type: 'poldrack-text',
+  data: {
+    trial_id: "error",
+    exp_id: 'tower_of_london',
+    reason: 'inactivity'
+  },
+  timing_response: 180000,
+  text: '<div class = centerbox><p class = center-block-text>The experiment has ended due to inactivity.</p><p class = center-block-text>Press <strong>enter</strong> to continue.</p></div>',
+  cont_key: [13],
+  timing_post_trial: 0,
+  on_finish: function() {
+    saveData();
+    console.log("data_saved_from_error_block");
+    window.location.href = 'https://app.prolific.com/submissions/complete?cc=C135SBBZ';
+  }
+};
+
 var end_block = {
   type: 'poldrack-text',
   data: {
@@ -552,7 +584,7 @@ var instructions_block = {
     '<div class = tol_bottombox><p class = block-text>Imagine that these balls have holes through them and the pegs are going through the holes. Notice that the first peg can hold three balls, the second peg can hold two balls, and the third peg can hold one ball.</p></div>',
     '<div class = tol_topbox><p class = block-text>Your task will be to make the arrangements of balls in your board look like the arrangements of balls in the target board in the fewest possible moves.</p></div>' +
     ref_board + makeBoard('peg_board', example_problem1) +
-    '<div class = tol_bottombox><p class = block-text>The balls in the target board are fixed in place, but the balls in your board are movable. You have to move them to make your board look like the target board. Sometime you will have to move a ball to a different peg in order to get to the ball below it. During this task it is important that you remember, you want the <strong>fewest possible moves</strong> that are required to make your board look like the target board. You will have 20 seconds to make your decision.</p></div>',
+    '<div class = tol_bottombox><p class = block-text>The balls in the target board are fixed in place, but the balls in your board are movable. You have to move them to make your board look like the target board. Sometimes you will have to move a ball to a different peg in order to get to the ball below it. During this task it is important that you remember, you want the <strong>fewest possible moves</strong> that are required to make your board look like the target board. <strong>Please plan your moves before making the first move.</strong> You will have 60 seconds to make your decision.</p></div>',
     '<div class = tol_topbox><p class = block-text>Here is an example. Notice that the balls in your board are in a different arrangement than in the target board. If we move the red ball from the first peg in your board to the third peg then it would look like the target board.</p></div>' +
     ref_board + makeBoard('peg_board', example_problem2) + '<div class = tol_bottombox></div>',
     "<div class = centerbox><p class = block-text>During the test you will move the balls on your board by clicking on the pegs. When you click on a peg, the top ball will move into a box called 'your hand'. When you click on another peg, the ball in 'your hand' will move to the top of that peg.</p><p class = block-text>If you try to select a peg with no balls or try to place a ball on a full peg, nothing will happen. If you successfully make your board look like the target board, the trial will end and you will move to the next problem.</p><p class = block-text>We will start with an easy example so that you can learn the controls.</p></div>"
@@ -601,6 +633,9 @@ var start_test_block = {
     num_moves = 0;
     curr_placement = getStartingPos("A",max_moves,problem_i)
     my_problem = getEndingPos("A",max_moves,problem_i)
+
+
+
   }
 };
 
@@ -718,6 +753,7 @@ var test_tohand = {
     } else {
       time_elapsed += getTime()
     }
+
     jsPsych.data.addDataToLastTrial({
       'current_position': jQuery.extend(true, [], curr_placement),
       'num_moves_made': num_moves,
@@ -725,6 +761,11 @@ var test_tohand = {
       'min_moves': answers[problem_i],
       'problem_id': problem_i
     })
+
+    if(zero_moves === MAX_NO_MOVES){
+      console.log("my msg")
+      tower_of_london_experiment = [error_block]
+    }
   }
 }
 
@@ -799,7 +840,22 @@ var practice_node = {
 var problem_node = {
   timeline: [test_tohand, test_toboard],
   loop_function: function(data) {
+
+    if (zero_moves === MAX_NO_MOVES) {
+      jsPsych.getDisplayElement().innerHTML = ''; // Clear the display
+      jsPsych.init({
+        timeline: [error_block]
+      });
+      return false;
+    }
+
     if (time_elapsed >= time_per_trial || num_moves === max_moves) {
+      if(num_moves === 0){
+        zero_moves++
+        console.log("zero_moves: ", zero_moves)
+      } else {
+        zero_moves = 0
+      }
       return false
     }
     data = data[1]
@@ -837,7 +893,6 @@ for (var j = 0; j < 3 ; j++) {
       tower_of_london_experiment.push(advance_problem_block)
     }
   }
-  console.log("j is: " + j)
   if(j!==2) {
     tower_of_london_experiment.push(advance_stage_block)
   }
