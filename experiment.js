@@ -473,7 +473,7 @@ var time_per_trial = 60000 //time per trial in seconds
 var time_elapsed = 0 //tracks time for a problem
 var num_moves = 0 //tracks number of moves for a problem
 var zero_moves = 0
-var MAX_NO_MOVES = 2
+var MAX_NO_MOVES = 3
   /*keeps track of peg board (where balls are). Lowest ball is the first value for each peg.
   So the initial_placement has the 1st ball and 2nd ball on the first peg and the third ball on the 2nd peg.
   */
