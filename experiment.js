@@ -166,7 +166,7 @@ var problemsJSON = {
     [3]
   ],
   "63": [
-    [1, 3, 0],
+    [1, 2, 0],
     [3, 0],
     [0]
   ],
@@ -359,18 +359,17 @@ var getTime = function() {
 }
 
 var getStartText = function() {
-  return '<div class = centerbox><p class = block-text>We will now start Section 1. There will be 8 problems to complete,' +
-  ' with a limit of 4 moves each one. </br> Press <strong>enter</strong> to begin.</p></div>'
+  return '<div class = centerbox><p class = block-text>We will now start Section 1. There will be 8 problems to complete, with a limit of 4 moves each one.</br> Press <strong>enter</strong> to begin.</p></div>'
 }
 
 var getStageText = function() {
   return '<div class = centerbox><p class = block-text>We will now start an new section. The problems will have now a limit of ' + (max_moves + 1) +
-      ' moves per problem. Press <strong>enter</strong> to begin.</p></div>'
+      ' moves per problem.<br> Press <strong>enter</strong> to begin.</p></div>'
 }
 
 var getText = function() {
   return '<div class = centerbox><p class = block-text>About to start problem ' + (problem_i + 2) +
-    '. Remember: You have ' + (max_moves) +' moves to solve it - Plan well. Press <strong>enter</strong> to begin.</p></div>'
+    '. Remember: You have ' + (max_moves) +' moves to solve it - Plan well.<br> Press <strong>enter</strong> to begin.</p></div>'
 }
 
 var pegClick = function(peg_id) {
@@ -514,10 +513,9 @@ var post_task_block = {
    data: {
        trial_id: "post task questions"
    },
-   questions: ['<p class = center-block-text style = "font-size: 20px">Please summarize what you were asked to do in this task.</p>',
-              '<p class = center-block-text style = "font-size: 20px">Do you have any comments about this task?</p>'],
-   rows: [15, 15],
-   columns: [60,60]
+   questions: ['<p class = center-block-text style = "font-size: 20px">Please summarize what you were asked to do in this task.</p>'],
+   rows: [15],
+   columns: [60]
 };
 
 /* define static blocks */
@@ -531,13 +529,13 @@ var error_block = {
     reason: 'inactivity'
   },
   timing_response: 180000,
-  text: '<div class = centerbox><p class = center-block-text>The experiment has ended due to inactivity.</p><p class = center-block-text>Press <strong>enter</strong> to continue.</p></div>',
+  text: '<div class = centerbox><p class = center-block-text>The experiment has ended due to inactivity.</p><p class = center-block-text><br> Press <strong>enter</strong> to continue.</p></div>',
   cont_key: [13],
   timing_post_trial: 0,
   on_finish: function() {
     saveData();
     console.log("data_saved_from_error_block");
-    window.location.href = 'https://app.prolific.com/submissions/complete?cc=C135SBBZ';
+    window.location.replace('https://app.prolific.com/submissions/complete?cc=C135SBBZ')
   }
 };
 
@@ -548,7 +546,7 @@ var end_block = {
     exp_id: 'tower_of_london'
   },
   timing_response: 180000,
-  text: '<div class = centerbox><p class = center-block-text>Thanks for completing this task!</p><p class = center-block-text>Press <strong>enter</strong> to continue.</p></div>',
+  text: '<div class = centerbox><p class = center-block-text>Thanks for completing this task!</p><p class = center-block-text><br>Press <strong>enter</strong> to continue.</p></div>',
   cont_key: [13],
   timing_post_trial: 0,
   on_finish: function() {
@@ -561,7 +559,7 @@ var end_block = {
 };
 
 var feedback_instruct_text =
-  'Welcome to the experiment. This experiment will take about 20 minutes. Press <strong>enter</strong> to begin.'
+  'Welcome to the experiment.<br> This experiment will take about 20 minutes.<br>Press <strong>enter</strong> to begin.'
 var feedback_instruct_block = {
   type: 'poldrack-text',
   data: {
@@ -606,11 +604,11 @@ var instruction_node = {
     }
     if (sumInstructTime <= instructTimeThresh * 1000) {
       feedback_instruct_text =
-        'Read through instructions too quickly.  Please take your time and make sure you understand the instructions.  Press <strong>enter</strong> to continue.'
+        'Read through instructions too quickly.  Please take your time and make sure you understand the instructions.<br>  Press <strong>enter</strong> to continue.'
       return true
     } else if (sumInstructTime > instructTimeThresh * 1000) {
       feedback_instruct_text =
-        'Done with instructions. Press <strong>enter</strong> to continue.'
+        'Done with instructions.\n Press <strong>enter</strong> to continue.'
       return false
     }
   }
