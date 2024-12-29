@@ -395,7 +395,6 @@ var pegClick = function(peg_id) {
 }
 
 
-
 var makeBoard = function(container, ball_placement, board_type) {
 
   let my_label
