@@ -878,6 +878,7 @@ if(getProlificId() === 'test'){
 /* create experiment definition array */
 var tower_of_london_experiment = [];
 tower_of_london_experiment.push(instruction_node);
+tower_of_london_experiment.push(post_task_block)
 tower_of_london_experiment.push(practice_node);
 tower_of_london_experiment.push(feedback_block)
 tower_of_london_experiment.push(start_test_block);
@@ -894,5 +895,4 @@ for (var j = 0; j < 3 ; j++) {
     tower_of_london_experiment.push(advance_stage_block)
   }
 }
-tower_of_london_experiment.push(post_task_block)
 tower_of_london_experiment.push(end_block);
