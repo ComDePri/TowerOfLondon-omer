@@ -359,7 +359,10 @@ var getTime = function() {
 }
 
 var getStartText = function() {
-  return '<div class = centerbox><p class = block-text>We will now start Section 1. There will be 8 problems to complete, with a limit of 4 moves each one.</br> Press <strong>enter</strong> to begin.</p></div>'
+  return '<div class = centerbox><p class = block-text>We will now start Section 1.' +
+      ' There will be 8 problems to complete, with a limit of 4 moves each one.' +
+      '<br><br> Pay attention: If your activity is three standard deviations below the participants’ average or if you are not active in the task, we may ask you to return your submission.' +
+      '<br><br> Press <strong>enter</strong> to begin.</p></div>'
 }
 
 var getStageText = function() {
