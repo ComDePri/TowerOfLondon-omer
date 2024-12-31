@@ -291,6 +291,7 @@ var getStim = function() {
   var moveCountElement = '<div id="move-count">Moves: ' + num_moves + '/'+ max_moves+ ' </div>';
   var ref_board = makeBoard('your_board', curr_placement, 'ref');
   var target_board = makeBoard('peg_board', my_problem);
+  console.log(ref_board, target_board);
   var canvas = '<div class = tol_canvas><div class="tol_vertical_line"></div></div>';
   var hold_box;
   if (held_ball !== 0) {
