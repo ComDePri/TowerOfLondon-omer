@@ -189,25 +189,283 @@ var problemsJSON = {
 
 const BUCKET_NAME = "tower-of-london-experiment-2024"
 // Define starting and ending positions
-function getStartingPos(group, numMovements, pos) {
+function getStartingPos(numMovements, pos) {
   var startPos = {
-    4: { "A": ["14", "45", "23", "14", "16", "22", "46", "42"], "B": ["34", "65", "53", "34", "26", "52", "36", "62"] },
-    5: { "A": ["23", "52", "34", "43", "54", "63", "15", "45"], "B": ["33", "52", "54", "33", "34", "53", "35", "55"] },
-    6: { "A": ["12", "53", "56", "42", "53", "24", "42", "16"], "B": ["32", "53", "46", "32", "33", "54", "42", "56"] },
+    4: ["14", "45", "23", "14", "16", "22", "46", "42"],
+    5: ["23", "52", "34", "43", "54", "63", "15", "45"],
+    6: ["12", "53", "56", "42", "53", "24", "42", "16"],
   };
 
-  return problemsJSON[startPos[numMovements][group][pos]];
+  return problemsJSON[startPos[numMovements][pos]];
 }
-
-function getEndingPos(group, numMovements, pos) {
+function getEndingPos(numMovements, pos) {
   var endPos = {
-    4: { "A": ["51", "51", "64", "53", "24", "63", "65", "55"], "B": ["11", "11", "14", "13", "14", "13", "15", "15"] },
-    5: { "A": ["41", "11", "54", "63", "34", "43", "55", "25"], "B": ["11", "11", "14", "13", "14", "13", "15", "15"] },
-    6: { "A": ["51", "11", "24", "63", "34", "63", "15", "35"], "B": ["11", "11", "14", "13", "14", "13", "15", "15"] },
+    4: ["51", "51", "64", "53", "24", "63", "65", "55"],
+    5: ["41", "11", "54", "63", "34", "43", "55", "25"],
+    6: ["51", "11", "24", "63", "34", "63", "15", "35"],
   };
 
-  return problemsJSON[endPos[numMovements][group][pos]]
+  return problemsJSON[endPos[numMovements][pos]]
 }
+
+const _4_moves_start = [
+  [
+    [2, 0, 0],
+    [3, 1],
+    [0]
+  ],
+  [
+    [3, 0, 0],
+    [2, 0],
+    [1]
+  ],
+  [
+    [2, 3, 0],
+    [1, 0],
+    [0]
+  ],
+  [
+    [2, 0, 0],
+    [3, 1],
+    [0]
+  ],
+  [
+    [0, 0, 0],
+    [3, 2],
+    [1]
+  ],
+  [
+    [2, 3, 0],
+    [0, 0],
+    [1]
+  ],
+  [
+    [0, 0, 0],
+    [2, 3],
+    [1]
+  ],
+  [
+    [3, 1, 0],
+    [0, 0],
+    [2]
+  ]
+]
+const _4_moves_end = [
+  [
+    [1, 3, 2],
+    [0, 0],
+    [0]
+  ],
+  [
+    [1, 3, 2],
+    [0, 0],
+    [0]
+  ],
+  [
+    [1, 0, 0],
+    [3, 2],
+    [0]
+  ],
+  [
+    [1, 3, 0],
+    [2, 0],
+    [0]
+  ],
+  [
+    [2, 0, 0],
+    [1, 3],
+    [0]
+  ],
+  [
+    [1, 2, 0],
+    [3, 0],
+    [0]
+  ],
+  [
+    [1, 0, 0],
+    [3, 0],
+    [2]
+  ],
+  [
+    [1, 0, 0],
+    [2, 0],
+    [3]
+  ]
+
+]
+const _5_moves_start = [
+  [
+    [2, 3, 0],
+    [1, 0],
+    [0]
+  ],
+  [
+    [1, 3, 0],
+    [0, 0],
+    [2]
+  ],
+  [
+    [3, 0, 0],
+    [1, 2],
+    [0]
+  ],
+  [
+    [3, 1, 0],
+    [2, 0],
+    [0]
+  ],
+  [
+    [1, 0, 0],
+    [2, 3],
+    [0]
+  ],
+  [
+    [1, 2, 0],
+    [3, 0],
+    [0]
+  ],
+  [
+    [2, 0, 0],
+    [3, 0],
+    [1]
+  ],
+  [
+    [3, 0, 0],
+    [2, 0],
+    [1]
+  ]
+]
+const _5_moves_end = [
+  [
+    [3, 1, 2],
+    [0, 0],
+    [0]
+  ],
+  [
+    [2, 1, 3],
+    [0, 0],
+    [0]
+  ],
+  [
+    [1, 0, 0],
+    [2, 3],
+    [0]
+  ],
+  [
+    [1, 2, 0],
+    [3, 0],
+    [0]
+  ],
+  [
+    [3, 0, 0],
+    [1, 2],
+    [0]
+  ],
+  [
+    [3, 1, 0],
+    [2, 0],
+    [0]
+  ],
+  [
+    [1, 0, 0],
+    [2, 0],
+    [3]
+  ],
+  [
+    [2, 0, 0],
+    [1, 0],
+    [3]
+  ]
+
+]
+const _6_moves_start = [
+  [
+    [2, 1, 0],
+    [0, 0],
+    [3]
+  ],
+  [
+    [1, 3, 0],
+    [2, 0],
+    [0]
+  ],
+  [
+    [0, 0, 0],
+    [2, 1],
+    [3]
+  ],
+  [
+    [3, 1, 0],
+    [0, 0],
+    [2]
+  ],
+  [
+    [1, 3, 0],
+    [2, 0],
+    [0]
+  ],
+  [
+    [2, 0, 0],
+    [1, 3],
+    [0]
+  ],
+  [
+    [3, 1, 0],
+    [0, 0],
+    [2]
+  ],
+  [
+    [0, 0, 0],
+    [3, 2],
+    [1]
+  ]
+
+]
+const _6_moves_end = [
+  [
+    [1, 3, 2],
+    [0, 0],
+    [0]
+  ],
+  [
+    [2, 1, 3],
+    [0, 0],
+    [0]
+  ],
+  [
+    [2, 0, 0],
+    [1, 3],
+    [0]
+  ],
+  [
+    [1, 2, 0],
+    [3, 0],
+    [0]
+  ],
+  [
+    [3, 0, 0],
+    [1, 2],
+    [0]
+  ],
+  [
+    [1, 2, 0],
+    [3, 0],
+    [0]
+  ],
+  [
+    [2, 0, 0],
+    [3, 0],
+    [1]
+  ],
+  [
+    [3, 0, 0],
+    [1, 0],
+    [2]
+  ]
+]
+
+const starting_pos = [_4_moves_start, _5_moves_start, _6_moves_start];
+const ending_pos = [_4_moves_end, _5_moves_end, _6_moves_end];
 
 function getProlificId(){
   const urlParams = new URL(location.href).searchParams;
@@ -288,7 +546,7 @@ function assessPerformance() {
 }
 
 var getStim = function() {
-  var moveCountElement = '<div id="move-count">Moves: ' + num_moves + '/'+ max_moves+ ' </div>';
+  var moveCountElement = '<div id="move-count">Moves: ' + num_moves + '/'+ (stage + 4)+ ' </div>';
   var ref_board = makeBoard('your_board', curr_placement, 'ref');
   var target_board = makeBoard('peg_board', my_problem);
   console.log(curr_placement, my_problem)
@@ -349,7 +607,6 @@ var getFB = function() {
   return canvas + ref_board + target_board + feedback_box
 }
 
-
 var getTime = function() {
   if ((time_per_trial - time_elapsed) > 0) {
     return time_per_trial - time_elapsed
@@ -367,13 +624,13 @@ var getStartText = function() {
 }
 
 var getStageText = function() {
-  return '<div class = centerbox><p class = block-text>We will now start an new section. The problems will have now a limit of ' + (max_moves + 1) +
+  return '<div class = centerbox><p class = block-text>We will now start an new section. The problems will have now a limit of ' + (stage + 5) +
       ' moves per problem.<br> Press <strong>enter</strong> to begin.</p></div>'
 }
 
 var getText = function() {
   return '<div class = centerbox><p class = block-text>About to start problem ' + (problem_i + 2) +
-    '. Remember: You have ' + (max_moves) +' moves to solve it - Plan well.<br> Press <strong>enter</strong> to begin.</p></div>'
+    '. Remember: You have ' + (stage + 4) +' moves to solve it - Plan well.<br> Press <strong>enter</strong> to begin.</p></div>'
 }
 
 var pegClick = function(peg_id) {
@@ -397,7 +654,6 @@ var pegClick = function(peg_id) {
     }
   }
 }
-
 
 var makeBoard = function(container, ball_placement, board_type) {
 
@@ -470,7 +726,7 @@ var correct = false
 var exp_stage = 'practice'
 var colors = ['Green', 'Red', 'Blue']
 var problem_i = 0
-var max_moves = 4
+var stage = 0
 var time_per_trial = 60000 //time per trial in seconds
 var time_elapsed = 0 //tracks time for a problem
 var num_moves = 0 //tracks number of moves for a problem
@@ -617,7 +873,6 @@ var instruction_node = {
   }
 }
 
-
 var start_test_block = {
   type: 'poldrack-text',
   data: {
@@ -632,13 +887,11 @@ var start_test_block = {
     held_ball = 0
     time_elapsed = 0
     num_moves = 0;
-    curr_placement = getStartingPos("A",max_moves,problem_i)
-    my_problem = getEndingPos("A",max_moves,problem_i)
-
-
-
+    curr_placement = starting_pos[stage][problem_i]
+    my_problem = ending_pos[stage][problem_i]
   }
 };
+
 
 var advance_stage_block = {
   type: 'poldrack-text',
@@ -654,9 +907,9 @@ var advance_stage_block = {
     time_elapsed = 0
     problem_i = 0;
     num_moves = 0;
-    max_moves++
-    curr_placement = getStartingPos("A",max_moves,problem_i)
-    my_problem = getEndingPos("A",max_moves,problem_i)
+    stage++
+    curr_placement = starting_pos[stage][problem_i]
+    my_problem = ending_pos[stage][problem_i]
 
   }
 }
@@ -675,8 +928,8 @@ var advance_problem_block = {
     time_elapsed = 0
     problem_i += 1;
     num_moves = 0;
-    curr_placement = getStartingPos("A",max_moves, problem_i)
-    my_problem = getEndingPos("A",max_moves,problem_i)
+    curr_placement = starting_pos[stage][problem_i]
+    my_problem = ending_pos[stage][problem_i]
   }
 }
 
@@ -850,7 +1103,7 @@ var problem_node = {
       return false;
     }
 
-    if (time_elapsed >= time_per_trial || num_moves === max_moves) {
+    if (time_elapsed >= time_per_trial || num_moves === stage+4) {
       if(num_moves === 0){
         zero_moves++
         console.log("zero_moves: ", zero_moves)
