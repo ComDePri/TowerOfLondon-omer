@@ -464,8 +464,8 @@ const _6_moves_end = [
   ]
 ]
 
-const starting_pos = [_4_moves_start, _5_moves_start, _6_moves_start];
-const ending_pos = [_4_moves_end, _5_moves_end, _6_moves_end];
+const starting_pos = [_4_moves_start];
+const ending_pos = [_4_moves_end];
 
 function getProlificId(){
   const urlParams = new URL(location.href).searchParams;
@@ -549,7 +549,6 @@ var getStim = function() {
   var moveCountElement = '<div id="move-count">Moves: ' + num_moves + '/'+ (stage + 4)+ ' </div>';
   var ref_board = makeBoard('your_board', curr_placement, 'ref');
   var target_board = makeBoard('peg_board', my_problem);
-  console.log(curr_placement, my_problem)
   var canvas = '<div class = tol_canvas><div class="tol_vertical_line"></div></div>';
   var hold_box;
   if (held_ball !== 0) {
