@@ -464,8 +464,8 @@ const _6_moves_end = [
   ]
 ]
 
-const starting_pos = [_4_moves_start];
-const ending_pos = [_4_moves_end];
+const starting_pos = [_4_moves_start, _5_moves_start, _6_moves_start];
+const ending_pos = [_4_moves_end, _5_moves_end, _6_moves_end];
 
 function getProlificId(){
   const urlParams = new URL(location.href).searchParams;

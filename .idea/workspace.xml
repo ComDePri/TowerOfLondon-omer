@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5cafcd41-816e-416a-be94-dc2c6bbcc552" name="Changes" comment="remove on finish from html">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/experiment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +97,7 @@
       <workItem from="1735645524859" duration="422000" />
       <workItem from="1735646002971" duration="11315000" />
       <workItem from="1735806949471" duration="1462000" />
-      <workItem from="1735809463852" duration="1421000" />
+      <workItem from="1735809463852" duration="1690000" />
     </task>
     <task id="LOCAL-00001" summary="upload experiment">
       <option name="closed" value="true" />
@@ -237,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735809498006</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="remove on finish from html">
+      <option name="closed" value="true" />
+      <created>1735810989514</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1735810989514</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
