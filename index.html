@@ -33,27 +33,6 @@ $( document ).ready(function() {
                addID('tower-of-london')
              },
 
-             on_finish: function(data){
-
-                 // Serialize the data
-                 var promise = new Promise(function(resolve, reject) {
-                     var data = jsPsych.data.dataAsJSON();
-                     resolve(data);
-                 })
-
-                 promise.then(function(data) {
-
-                     $.ajax({
-                         type: "POST",
-                         url: '/save',
-                         data: { "data": data },
-                         success: function(){ document.location = "/next" },
-                         dataType: "application/json",
-
-                     });
-                 })
-             }
-
       });
 });
 </script>

@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5cafcd41-816e-416a-be94-dc2c6bbcc552" name="Changes" comment="upload experiment">
+    <list default="true" id="5cafcd41-816e-416a-be94-dc2c6bbcc552" name="Changes" comment="changed posotion to hardcoded">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/experiment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +96,9 @@
       <workItem from="1735563556325" duration="176000" />
       <workItem from="1735587556080" duration="3000" />
       <workItem from="1735645524859" duration="422000" />
-      <workItem from="1735646002971" duration="9824000" />
+      <workItem from="1735646002971" duration="11315000" />
+      <workItem from="1735806949471" duration="1462000" />
+      <workItem from="1735809463852" duration="20000" />
     </task>
     <task id="LOCAL-00001" summary="upload experiment">
       <option name="closed" value="true" />
@@ -218,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735645795444</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="changed posotion to hardcoded">
+      <option name="closed" value="true" />
+      <created>1735737093519</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1735737093519</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +247,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="upload experiment" />
-    <option name="LAST_COMMIT_MESSAGE" value="upload experiment" />
+    <MESSAGE value="changed posotion to hardcoded" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed posotion to hardcoded" />
   </component>
 </project>
