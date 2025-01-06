@@ -485,6 +485,77 @@ function getExpURL(){
   return expurl +"/?PROLIFIC_PID="+ pid + "&studID=" + stud + "&sessID=" + sess;
 }
 
+function downloadJSON(data, filename) {
+  const jsonData = JSON.stringify(data, null, 2); // Pretty print JSON
+  const blob = new Blob([jsonData], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click(); // Automatically triggers the download
+}
+
+function showErrorMessage() {
+  const email = "comdepri+shir_neh@mail.huji.ac.il";
+
+  // Copy the email to the clipboard
+  navigator.clipboard.writeText(email).then(() => {
+    console.log("Email address copied to clipboard.");
+  }).catch(err => {
+    console.error("Failed to copy email address to clipboard:", err);
+  });
+
+  // Update the page content
+  document.body.innerHTML = `
+    <div style="font-family: Arial, sans-serif; text-align: center; margin-top: 20vh;">
+      <h1 style="color: sandybrown;">There was an error saving the experiment data</h1>
+      <p>It has been saved on your computer. Please send us the file to the following email address:</p>
+      <p><a href="mailto:${email}" style="color: blue; text-decoration: underline;">${email}</a></p>
+      <p style="color: gray;">(The email address has been copied to your clipboard.)</p>
+      <p>Press <strong>Enter</strong> to continue.</p>
+    </div>
+  `;
+
+  // Listen for the Enter key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      window.location.href = getExpURL();
+    }
+  });
+}
+
+function uploadDataWithRetry(retryCount = 3, delay = 1000) {
+
+  let subject = getProlificId();
+  let data = jsPsych.data.dataAsJSON();// Get data as JSON string
+
+  $.ajax({
+    url: 'https://hss74dd1ed.execute-api.us-east-1.amazonaws.com/dev/',
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "subject_id": `${subject}`,
+      "bucket": `${BUCKET_NAME}`,
+      "exp_data": JSON.stringify(data)
+    }),
+    success: function(response) {
+      console.log('Data uploaded successfully:', response);
+      window.location.href = getExpURL();
+    },
+    error: function(xhr, status, error) {
+      console.error(`Error uploading data (${retryCount} retries left):`, error);
+      if (retryCount > 0) {
+        setTimeout(() => {
+          uploadDataWithRetry(retryCount - 1, delay * 2); // Double the delay
+        }, delay);
+      } else {
+        console.error('All retry attempts failed.');
+        downloadJSON(data, 'tol_results_' + subject);
+        showErrorMessage()
+      }
+    }
+  });
+}
+
 function saveData() {
   // Retrieve data from jsPsych
 
@@ -504,9 +575,12 @@ function saveData() {
     }),
     success: function(response) {
       console.log('Data uploaded successfully:', response);
+      window.location.href = getExpURL();
+
     },
     error: function(xhr, status, error) {
       console.error('Error uploading data:', error);
+
     }
   });
 }
@@ -791,7 +865,7 @@ var error_block = {
   cont_key: [13],
   timing_post_trial: 0,
   on_finish: function() {
-    saveData();
+    uploadDataWithRetry();
     console.log("data_saved_from_error_block");
     window.location.replace('https://app.prolific.com/submissions/complete?cc=C135SBBZ')
   }
@@ -809,10 +883,7 @@ var end_block = {
   timing_post_trial: 0,
   on_finish: function() {
   assessPerformance();
-  saveData();
-  console.log("data_saved")
-  window.location.href = getExpURL();
-  history.pushState(null, '', window.location.href);
+  uploadDataWithRetry();
 }
 };
 
