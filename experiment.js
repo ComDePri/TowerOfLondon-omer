@@ -187,7 +187,7 @@ var problemsJSON = {
   ]
 }
 
-const BUCKET_NAME = "tower-of-london-experiment-2024"
+const BUCKET_NAME = "shape-dependent-tracking-2025"
 // Define starting and ending positions
 function getStartingPos(numMovements, pos) {
   var startPos = {
@@ -575,6 +575,9 @@ function uploadDataWithRetry(lastTry=false, endTest=true ,retryCount = 5, delay 
           console.log('Data uploaded successfully:', response);
           resolve(response); // Resolve the promise on success
           if(endTest) {
+            if (isKick){
+
+            }
             window.location.href = getExpURL();
           }
         },
@@ -913,7 +916,7 @@ var error_block = {
   cont_key: [13],
   timing_post_trial: 0,
   on_finish: function() {
-    uploadDataWithRetry();
+    uploadDataWithRetry(false,false)
     console.log("data_saved_from_error_block");
     window.location.replace('https://app.prolific.com/submissions/complete?cc=C135SBBZ')
   }
