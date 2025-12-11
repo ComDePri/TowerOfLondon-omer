@@ -1010,7 +1010,7 @@ var manual_upload_block = {
 
 
 var feedback_instruct_text =
-  'Welcome to the experiment.<br> This experiment will take about 20 minutes.<br>Press <strong>enter</strong> to begin.'
+  'Welcome to the experiment.<br> This experiment will take about 15 minutes.<br>Press <strong>enter</strong> to begin.'
 var feedback_instruct_block = {
   type: 'poldrack-text',
   data: {
