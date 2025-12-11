@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5cafcd41-816e-416a-be94-dc2c6bbcc552" name="Changes" comment="remove on finish from html">
+    <list default="true" id="5cafcd41-816e-416a-be94-dc2c6bbcc552" name="Changes" comment="uploadDataWithRetry(false,false)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/experiment.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +53,7 @@
     &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;disable.download.node.interpreter.editor.notification&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/devop/WebstormProjects/TowerOfLondon-omer&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -109,7 +109,10 @@
       <workItem from="1736878282919" duration="3004000" />
       <workItem from="1736950086972" duration="57000" />
       <workItem from="1737274175008" duration="771000" />
-      <workItem from="1737842631090" duration="651000" />
+      <workItem from="1737842631090" duration="2170000" />
+      <workItem from="1743947899761" duration="3626000" />
+      <workItem from="1744027889832" duration="2203000" />
+      <workItem from="1765469628236" duration="900000" />
     </task>
     <task id="LOCAL-00001" summary="upload experiment">
       <option name="closed" value="true" />
@@ -279,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736950101967</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="uploadDataWithRetry(false,false)">
+      <option name="closed" value="true" />
+      <created>1737843872512</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1737843872512</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +311,7 @@
     <MESSAGE value="upload experiment" />
     <MESSAGE value="changed posotion to hardcoded" />
     <MESSAGE value="remove on finish from html" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove on finish from html" />
+    <MESSAGE value="uploadDataWithRetry(false,false)" />
+    <option name="LAST_COMMIT_MESSAGE" value="uploadDataWithRetry(false,false)" />
   </component>
 </project>

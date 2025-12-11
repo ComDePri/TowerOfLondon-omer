@@ -575,9 +575,6 @@ function uploadDataWithRetry(lastTry=false, endTest=true ,retryCount = 5, delay 
           console.log('Data uploaded successfully:', response);
           resolve(response); // Resolve the promise on success
           if(endTest) {
-            if (isKick){
-
-            }
             window.location.href = getExpURL();
           }
         },
