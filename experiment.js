@@ -187,7 +187,7 @@ var problemsJSON = {
   ]
 }
 
-const BUCKET_NAME = "shape-dependent-tracking-2025"
+const BUCKET_NAME = "tower-of-london-experiment-2024"
 // Define starting and ending positions
 function getStartingPos(numMovements, pos) {
   var startPos = {
